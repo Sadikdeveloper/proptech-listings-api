@@ -1,0 +1,52 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ListingType {
+  RENT
+  SALE
+  SHORTLET
+}
+
+model Agent {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @db.VarChar(120)
+  email     String   @unique @db.VarChar(160)
+  phone     String?  @db.VarChar(32)
+  listings  Listing[]
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("agents")
+}
+
+model Listing {
+  id          String      @id @default(uuid()) @db.Uuid
+  title       String      @db.VarChar(140)
+  description String?     @db.VarChar(2000)
+  price       Decimal     @db.Decimal(14, 2)
+  currency    String      @default("USD") @db.Char(3)
+  type        ListingType
+  bedrooms    Int         @db.SmallInt
+  latitude    Float
+  longitude   Float
+  agentId     String      @map("agent_id") @db.Uuid
+  agent       Agent       @relation(fields: [agentId], references: [id], onDelete: Restrict)
+  createdAt   DateTime    @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime    @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  // Bounding-box pre-filter for radius searches; a PostGIS GiST index is the
+  // scalable alternative once the table grows past a few million rows.
+  @@index([latitude, longitude])
+  @@index([type, price])
+  @@index([bedrooms])
+  @@index([agentId])
+  @@index([createdAt])
+  @@map("listings")
+}
