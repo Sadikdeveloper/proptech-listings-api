@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsIn, IsOptional, IsString, MaxLength } from 'class-validator';
-import { PaginationQueryDto } from '../../common/dto/pagination-query.dto';
-import { SORT_DIRECTIONS, SortDirection } from '../../common/types/api.types';
+import { PaginationQueryDto } from '../../../common/dto/pagination-query.dto';
+import { SORT_DIRECTIONS, SortDirection } from '../../../common/types/api.types';
 import { AGENT_SORT_FIELDS, AgentSortField } from '../agents.types';
 
 export class AgentQueryDto extends PaginationQueryDto {

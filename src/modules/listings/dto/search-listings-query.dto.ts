@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNumber, IsOptional, Max, Min } from 'class-validator';
-import { MAX_RADIUS_KM, MIN_RADIUS_KM } from '../../common/geo/geo.util';
+import { MAX_RADIUS_KM, MIN_RADIUS_KM } from '../../../common/geo/geo.util';
 import { ListingsQueryDto } from './listings-query.dto';
 
 export const DEFAULT_RADIUS_KM = 5;

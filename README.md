@@ -227,7 +227,7 @@ any query runs.
 configured in code, the same `pg` driver serves the app and the migration tooling,
 and the API can be deployed to environments where native binaries are awkward
 (serverless, restricted CI). It also keeps the runtime honest — the connection
-string is validated once at boot (`src/config/env.validation.ts`) and the app
+string is validated once at boot (`src/modules/config/env.validation.ts`) and the app
 refuses to start with a missing or malformed `DATABASE_URL`.
 
 **Geo search in SQL.** Radius search is one raw query built with `Prisma.sql`
@@ -281,7 +281,9 @@ that host is blocked it is enough to point Prisma at any existing file and conti
 
 ```bash
 touch /tmp/prisma-engine-placeholder
-PRISMA_QUERY_ENGINE_LIBRARY=/tmp/prisma-engine-placeholder npm run prisma:generate
+PRISMA_SCHEMA_ENGINE_BINARY=/tmp/prisma-engine-placeholder \
+  PRISMA_QUERY_ENGINE_LIBRARY=/tmp/prisma-engine-placeholder \
+  npm run prisma:generate
 ```
 
 Migrations are the same story: `npm run prisma:deploy` (the standard command) needs
@@ -321,22 +323,72 @@ sees everything applied. The test runner uses that applier.
 
 ## Project layout
 
+Every Nest module lives under `src/modules/<feature>/` with its own controller,
+service, module file, types file and `dto/` folder. Code that is not a module —
+shared helpers, filters, pipes, types, config plumbing and the Swagger setup —
+stays outside so the module tree only contains features.
+
 ```
 prisma/
   schema.prisma                 # models, enums, indexes
   migrations/                   # committed SQL migrations
-  seed.ts                       # idempotent-ish dev seed (skips when data exists)
-scripts/                       # test runner, offline migration applier, embedded PostgreSQL
+  seed.ts                       # dev seed (upserts agents, skips when listings exist)
+scripts/                        # test runner, offline migration applier, embedded PostgreSQL
 src/
-  agents/                      # agents module (dto/, mapper, service, controller, types)
-  listings/                    # listings module (dto/, mapper, filters, raw radius query, types)
-  common/                      # geo maths, pagination helpers, exception filter, pipes, Swagger decorators
-  config/                      # env validation + typed AppConfigService
-  docs/                        # Swagger/OpenAPI setup
-  health/                      # liveness endpoint
-  prisma/                      # PrismaService with the pg driver adapter
+  main.ts                       # bootstrap: helmet, CORS, docs, listen
+  app.module.ts                 # module graph + global pipe/filter
+  modules/
+    agents/
+      agents.controller.ts      # POST/GET/PATCH/DELETE /agents
+      agents.service.ts
+      agents.module.ts
+      agents.types.ts           # AgentEntity, sort fields, paginated type
+      agents.mapper.ts          # Prisma row -> API entity
+      dto/
+        create-agent.dto.ts
+        update-agent.dto.ts
+        agent-query.dto.ts
+        agent-response.dto.ts
+    listings/
+      listings.controller.ts    # CRUD + /listings/search
+      listings.service.ts
+      listings.module.ts
+      listings.types.ts         # ListingEntity, enums, price/bedroom limits
+      listings.mapper.ts
+      listings.filters.ts       # query DTO -> Prisma where/orderBy
+      listings.query.ts         # raw radius SQL (haversine + bounding box)
+      dto/
+        create-listing.dto.ts
+        update-listing.dto.ts
+        listings-query.dto.ts
+        search-listings-query.dto.ts
+        geo-point.dto.ts
+        listing-response.dto.ts
+    health/                     # liveness endpoint
+      health.controller.ts
+      health.module.ts
+      health.types.ts
+    prisma/                     # PrismaService (pg driver adapter) + global module
+      prisma.service.ts
+      prisma.module.ts
+    config/                     # env validation + typed AppConfigService (global module)
+      app-config.module.ts
+      app-config.service.ts
+      config.types.ts
+      configuration.ts
+      env.validation.ts
+  common/                       # not modules: shared building blocks
+    geo/                        # haversine + bounding box maths
+    types/                      # api.types.ts, geo.types.ts
+    dto/                        # pagination DTOs, error/pagination response DTOs
+    filters/                    # AllExceptionsFilter
+    pipes/                      # ListingQueryValidationPipe (cross-field query rules)
+    validation/                 # validation pipe factory, error flattening, query rules
+    decorators/                 # Swagger helpers (paginated + error responses)
+    utils/                      # pagination helpers, connection-string redaction
+  docs/                         # Swagger/OpenAPI setup (no module: bootstrapped in main.ts)
 test/
-  e2e/                         # HTTP tests per endpoint group
-  unit/                        # unit tests (geo, pagination, validation, filters, services)
-  support/                     # app factory, fixtures, database helpers
+  e2e/                          # HTTP tests per endpoint group
+  unit/                         # unit tests (geo, pagination, validation, filters, services)
+  support/                      # app factory, fixtures, database helpers
 ```

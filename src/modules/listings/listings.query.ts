@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { boundingBox, EARTH_RADIUS_KM } from '../common/geo/geo.util';
+import { boundingBox, EARTH_RADIUS_KM } from '../../common/geo/geo.util';
 import { LISTING_TYPE_TO_PRISMA, ListingSearchFilters, ListingSortField } from './listings.types';
 
 const EARTH_RADIUS_SQL = Prisma.raw(EARTH_RADIUS_KM.toFixed(4));

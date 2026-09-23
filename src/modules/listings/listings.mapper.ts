@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { roundKm } from '../common/geo/geo.util';
+import { roundKm } from '../../common/geo/geo.util';
 import { CreateListingDto } from './dto/create-listing.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
 import {

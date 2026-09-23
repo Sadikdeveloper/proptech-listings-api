@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { AgentsService } from '../agents/agents.service';
-import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
-import { PaginationRequest } from '../common/types/api.types';
-import { buildPaginationMeta, toSkip } from '../common/utils/pagination.util';
+import { PaginationQueryDto } from '../../common/dto/pagination-query.dto';
+import { PaginationRequest } from '../../common/types/api.types';
+import { buildPaginationMeta, toSkip } from '../../common/utils/pagination.util';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateListingDto } from './dto/create-listing.dto';
 import { ListingsQueryDto } from './dto/listings-query.dto';

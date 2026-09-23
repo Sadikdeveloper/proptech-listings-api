@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
-import { redactConnectionString } from '../common/utils/redact.util';
+import { redactConnectionString } from '../../common/utils/redact.util';
 import { AppConfigService } from '../config/app-config.service';
 
 @Injectable()

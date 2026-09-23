@@ -1,12 +1,12 @@
 import { NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { AgentsService } from '../../src/agents/agents.service';
-import { CreateListingDto } from '../../src/listings/dto/create-listing.dto';
-import { ListingsQueryDto } from '../../src/listings/dto/listings-query.dto';
-import { SearchListingsQueryDto } from '../../src/listings/dto/search-listings-query.dto';
-import { ListingsService } from '../../src/listings/listings.service';
-import { ListingRecord, ListingSearchRow } from '../../src/listings/listings.types';
-import { PrismaService } from '../../src/prisma/prisma.service';
+import { AgentsService } from '../../src/modules/agents/agents.service';
+import { CreateListingDto } from '../../src/modules/listings/dto/create-listing.dto';
+import { ListingsQueryDto } from '../../src/modules/listings/dto/listings-query.dto';
+import { SearchListingsQueryDto } from '../../src/modules/listings/dto/search-listings-query.dto';
+import { ListingsService } from '../../src/modules/listings/listings.service';
+import { ListingRecord, ListingSearchRow } from '../../src/modules/listings/listings.types';
+import { PrismaService } from '../../src/modules/prisma/prisma.service';
 
 const AGENT_ID = '3f1a8e42-2f4e-4b4a-9f3e-1c2b3a4d5e6f';
 

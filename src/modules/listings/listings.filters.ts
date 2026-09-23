@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { GeoSearchParams } from '../common/types/geo.types';
+import { GeoSearchParams } from '../../common/types/geo.types';
 import { ListingsQueryDto } from './dto/listings-query.dto';
 import { DEFAULT_RADIUS_KM, SearchListingsQueryDto } from './dto/search-listings-query.dto';
 import {

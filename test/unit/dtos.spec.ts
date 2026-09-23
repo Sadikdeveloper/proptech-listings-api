@@ -1,11 +1,11 @@
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { CreateAgentDto } from '../../src/agents/dto/create-agent.dto';
-import { AgentQueryDto } from '../../src/agents/dto/agent-query.dto';
-import { CreateListingDto } from '../../src/listings/dto/create-listing.dto';
-import { ListingsQueryDto } from '../../src/listings/dto/listings-query.dto';
-import { SearchListingsQueryDto } from '../../src/listings/dto/search-listings-query.dto';
-import { UpdateListingDto } from '../../src/listings/dto/update-listing.dto';
+import { CreateAgentDto } from '../../src/modules/agents/dto/create-agent.dto';
+import { AgentQueryDto } from '../../src/modules/agents/dto/agent-query.dto';
+import { CreateListingDto } from '../../src/modules/listings/dto/create-listing.dto';
+import { ListingsQueryDto } from '../../src/modules/listings/dto/listings-query.dto';
+import { SearchListingsQueryDto } from '../../src/modules/listings/dto/search-listings-query.dto';
+import { UpdateListingDto } from '../../src/modules/listings/dto/update-listing.dto';
 
 const AGENT_ID = '3f1a8e42-2f4e-4b4a-9f3e-1c2b3a4d5e6f';
 

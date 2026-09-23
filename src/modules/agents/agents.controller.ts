@@ -12,8 +12,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { ApiErrorResponses } from '../common/decorators/api-error-responses.decorator';
-import { ApiPaginatedResponse } from '../common/decorators/api-paginated-response.decorator';
+import { ApiErrorResponses } from '../../common/decorators/api-error-responses.decorator';
+import { ApiPaginatedResponse } from '../../common/decorators/api-paginated-response.decorator';
 import { AgentsService } from './agents.service';
 import { CreateAgentDto } from './dto/create-agent.dto';
 import { AgentQueryDto } from './dto/agent-query.dto';
