@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PaginatedResult } from '../common/types/api.types';
-import { buildPaginationMeta, toSkip } from '../common/utils/pagination.util';
+import { PaginatedResult } from '../../common/types/api.types';
+import { buildPaginationMeta, toSkip } from '../../common/utils/pagination.util';
 import { PrismaService } from '../prisma/prisma.service';
 import { AgentEntity, AgentListFilters } from './agents.types';
 import { toAgentEntity } from './agents.mapper';

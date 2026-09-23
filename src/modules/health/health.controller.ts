@@ -1,7 +1,7 @@
 import { Controller, Get, Logger, ServiceUnavailableException } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { ApiErrorResponses } from '../common/decorators/api-error-responses.decorator';
-import { ErrorCode } from '../common/types/api.types';
+import { ApiErrorResponses } from '../../common/decorators/api-error-responses.decorator';
+import { ErrorCode } from '../../common/types/api.types';
 import { PrismaService } from '../prisma/prisma.service';
 import { HealthResponse } from './health.types';
 

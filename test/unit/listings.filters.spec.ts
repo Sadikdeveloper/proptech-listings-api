@@ -4,9 +4,9 @@ import {
   toListingSearchFilters,
   toPrismaOrderBy,
   toPrismaWhere,
-} from '../../src/listings/listings.filters';
-import { SearchListingsQueryDto } from '../../src/listings/dto/search-listings-query.dto';
-import { ListingsQueryDto } from '../../src/listings/dto/listings-query.dto';
+} from '../../src/modules/listings/listings.filters';
+import { SearchListingsQueryDto } from '../../src/modules/listings/dto/search-listings-query.dto';
+import { ListingsQueryDto } from '../../src/modules/listings/dto/listings-query.dto';
 
 function query(overrides: Partial<ListingsQueryDto> = {}): ListingsQueryDto {
   return Object.assign(new ListingsQueryDto(), { page: 1, limit: 20, sortOrder: 'desc' }, overrides);

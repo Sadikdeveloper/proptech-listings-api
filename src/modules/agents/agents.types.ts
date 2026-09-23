@@ -1,5 +1,5 @@
 import { Agent } from '@prisma/client';
-import { PaginatedResult, SortDirection } from '../common/types/api.types';
+import { PaginatedResult, SortDirection } from '../../common/types/api.types';
 
 export interface AgentEntity {
   id: string;

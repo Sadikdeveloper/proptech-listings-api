@@ -1,6 +1,6 @@
 import { ListingType as PrismaListingType, Prisma } from '@prisma/client';
-import { PaginatedResult, SortDirection } from '../common/types/api.types';
-import { GeoSearchParams, GeoPoint } from '../common/types/geo.types';
+import { PaginatedResult, SortDirection } from '../../common/types/api.types';
+import { GeoSearchParams, GeoPoint } from '../../common/types/geo.types';
 
 export const LISTING_TYPES = ['rent', 'sale', 'shortlet'] as const;
 export type ListingType = (typeof LISTING_TYPES)[number];

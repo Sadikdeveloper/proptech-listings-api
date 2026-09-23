@@ -1,8 +1,8 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import { IsIn, IsInt, IsNumber, IsOptional, IsUUID, Max, Min } from 'class-validator';
-import { PaginationQueryDto } from '../../common/dto/pagination-query.dto';
-import { SORT_DIRECTIONS, SortDirection } from '../../common/types/api.types';
+import { PaginationQueryDto } from '../../../common/dto/pagination-query.dto';
+import { SORT_DIRECTIONS, SortDirection } from '../../../common/types/api.types';
 import {
   LISTING_SORT_FIELDS,
   LISTING_TYPES,

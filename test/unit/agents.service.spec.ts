@@ -1,6 +1,6 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
-import { AgentsService } from '../../src/agents/agents.service';
-import { PrismaService } from '../../src/prisma/prisma.service';
+import { AgentsService } from '../../src/modules/agents/agents.service';
+import { PrismaService } from '../../src/modules/prisma/prisma.service';
 
 const AGENT_ID = '3f1a8e42-2f4e-4b4a-9f3e-1c2b3a4d5e6f';
 

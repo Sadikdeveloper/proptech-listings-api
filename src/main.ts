@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { redactConnectionString } from './common/utils/redact.util';
-import { AppConfigService } from './config/app-config.service';
+import { AppConfigService } from './modules/config/app-config.service';
 import { setupDocumentation } from './docs/swagger.setup';
 
 const HOST = '0.0.0.0';

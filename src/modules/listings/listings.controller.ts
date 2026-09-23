@@ -12,9 +12,9 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { ApiErrorResponses } from '../common/decorators/api-error-responses.decorator';
-import { ApiPaginatedResponse } from '../common/decorators/api-paginated-response.decorator';
-import { ListingQueryValidationPipe } from '../common/pipes/listing-query-validation.pipe';
+import { ApiErrorResponses } from '../../common/decorators/api-error-responses.decorator';
+import { ApiPaginatedResponse } from '../../common/decorators/api-paginated-response.decorator';
+import { ListingQueryValidationPipe } from '../../common/pipes/listing-query-validation.pipe';
 import { CreateListingDto } from './dto/create-listing.dto';
 import { ListingResponseDto } from './dto/listing-response.dto';
 import { ListingsQueryDto } from './dto/listings-query.dto';
